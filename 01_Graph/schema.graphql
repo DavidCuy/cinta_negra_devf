@@ -1,0 +1,19 @@
+type Query {
+    Saludo(name: String!, age: Float):String!,
+    Despedida(name: String!):String!,
+    Edad(age: Float!):String!
+}
+
+type Mutation {
+    createPerson(data: inputPersona!):Person
+}
+
+type Person {
+    name:String!,
+    age:Int
+}
+
+input inputPersona {
+    name:String!,
+    age:Int
+}

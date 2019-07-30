@@ -1,0 +1,40 @@
+type Query {
+    SayHello(name: String!, age: Float):String!,
+    GetPostById(id:String):Post!,
+    GetAllPosts:[Post],
+    GetUserByName(name: String!, age: Float):User!
+}
+
+type Mutation{
+    createPost(data: inputPost!):Post!,
+    createUser(data: inputUser!):User!
+}
+
+type User {
+    id:ID,
+    name:String!,
+    email:String!,
+    img:String
+}
+
+input inputUser {
+    name:String!,
+    email:String!,
+    password:String!,
+    img:String
+}
+
+type Post {
+    id:ID,
+    title:String!,
+    body:String!,
+    createdAt:String!,
+    user:User!
+}
+
+input inputPost {
+    title:String!,
+    body:String!,
+    createdAt:String!,
+    user:ID
+}
