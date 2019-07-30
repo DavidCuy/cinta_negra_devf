@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
@@ -17,10 +16,10 @@ const postSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        required: 'Users'
+        ref: 'user'
     }
-});
+})
 
-// postSchema.plugin(uniqueValidator);
+const Post = mongoose.model('post', postSchema);
 
-module.exports = mongoose.model('Posts', postSchema);
+module.exports = Post;
