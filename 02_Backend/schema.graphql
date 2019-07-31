@@ -1,13 +1,15 @@
 type Query {
     SayHello(name: String!, age: Float):String!,
-    GetPostById(id:String):Post!,
+    GetPostById(id:ID):Post!,
     GetAllPosts:[Post],
+    GetUsers:[User],
     GetUserByName(name: String!, age: Float):User!
 }
 
 type Mutation{
     createPost(data: inputPost!):Post!,
-    createUser(data: inputUser!):User!
+    createUser(data: inputUser!):User!,
+    login(data: inputLogin!):Token!
 }
 
 type User {
@@ -32,9 +34,19 @@ type Post {
     user:User!
 }
 
+type Token {
+    token: String!,
+    message: String
+}
+
 input inputPost {
     title:String!,
     body:String!,
     createdAt:String!,
     user:ID
+}
+
+input inputLogin {
+    email:String!,
+    password:String!
 }

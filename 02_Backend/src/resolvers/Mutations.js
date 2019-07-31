@@ -1,5 +1,6 @@
 const Post = require('../models/Post.model');
 const User = require('../models/User.model');
+const authenticate = require('../utils/authenticate');
 
 const createPost = async(_, args) => {
     let newPost = new Post({
@@ -10,7 +11,6 @@ const createPost = async(_, args) => {
     })
     const miPost = await newPost.save();
     const post = await Post.findOne({ _id: miPost._id }).populate('user')
-    console.log(post);
     return post;
 };
 
@@ -22,8 +22,14 @@ const createUser = async(_, args) => {
     return user;
 };
 
+const login = async(_, args) => {
+    let user = await authenticate(args);
+    return user;
+}
+
 
 module.exports = {
     createPost,
-    createUser
+    createUser,
+    login
 };

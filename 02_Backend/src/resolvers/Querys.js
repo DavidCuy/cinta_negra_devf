@@ -7,12 +7,18 @@ const User = require('../models/User.model');
 
 
 const GetPostById = async(_, args) => {
-    const myPost = await Post.findById(args.id);
+    let myPost = await Post.findById(args.id);
+    if (!myPost) {
+        throw new Error({
+            description: 'No se encontró el post'
+        });
+    }
+
     return myPost;
 };
 
 const GetAllPosts = async(_, args) => {
-    const allPosts = await Post.find();
+    const allPosts = await Post.find().populate('user');
     return allPosts;
 }
 
@@ -24,8 +30,14 @@ const GetUserByName = async(_, args) => {
     return myUser;
 };
 
+const GetUsers = async(_, args) => {
+    const users = await User.find().exec();
+    return users;
+};
+
 module.exports = {
     GetPostById,
     GetAllPosts,
-    GetUserByName
+    GetUserByName,
+    GetUsers
 };
