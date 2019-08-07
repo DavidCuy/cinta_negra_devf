@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/User.model');
 
 exports.generateToken = (user) => {
     const payload = {
@@ -8,6 +9,22 @@ exports.generateToken = (user) => {
 
     };
     return jwt.sign(payload, process.env.SECRET, { expiresIn: '1hr' });
+};
+
+exports.verifyToken = async(req) => {
+    const Authorization = req.get('Authorization');
+    if (!Authorization) {
+        return req;
+    }
+
+    const formToken = Authorization.replace('JWT ', "");
+    const payload = jwt.verify(formToken, process.env.SECRET);
+    if (!payload) {
+        return req;
+    }
+
+    const user = await User.findOne({ _id: payload.id });
+    return {...req, user };
 };
 
 exports.getTokenInfo = (token, callback) => {
