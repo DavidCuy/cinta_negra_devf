@@ -70,7 +70,13 @@
             }
         }
     ],
-    "profile": {
-        "name": "typicode"
-    }
+    "users": [{
+        "id": 1,
+        "name": "David Cuy",
+        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    }, {
+        "id": 2,
+        "name": "Lorem Ipsum",
+        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    }]
 }
