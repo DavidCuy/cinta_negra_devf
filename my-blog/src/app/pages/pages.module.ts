@@ -8,6 +8,7 @@ import { PostComponent } from './post/post.component';
 import { FormComponent } from './form/form.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { PostCreateComponent } from './posts/post-create.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterComponent } from '../components/footer/footer.component';
     PostComponent,
     FormComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    PostCreateComponent
   ],
   imports: [
     CommonModule,
